@@ -1,0 +1,54 @@
+@import "../../../assets/css/responsive.scss";
+
+
+
+
+.login-visual {
+    min-height: calc(100vh - 0px);
+    position: relative;
+    padding: 20px 15px 0px;
+    box-sizing: border-box;
+
+    @include tablet {
+        width: calc(100% - 280px);
+        float: right;
+        padding: 40px 15px 50px;
+    }
+
+    @include desktop {
+        width: calc(100% - 400px);
+        float: right;
+        padding: 40px 15px 50px;
+    }
+}
+
+
+.login-form-holder {
+    max-width: 530px;
+    margin: 20px auto;
+
+    @include tablet {
+        margin: 100px auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-size: 30px;
+        color: #3577e4;
+        padding: 0 0 25px;
+        margin: 0px;
+        font-weight: 500;
+    }
+}
+
+
+
+.n-row {
+    margin: 0;
+}
+
+.signup-btn, .signup-btn:hover {
+    text-decoration: none;
+    background: lightgreen;
+}

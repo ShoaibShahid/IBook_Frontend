@@ -1,0 +1,59 @@
+<div class="login-wrapper clearfix">
+  <div class="login-sidebar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="logo">
+    </div>
+
+
+    <h1><i style="color:#fff">iBook: Next-Gen AI Writing APP</i></h1>
+    <h2>Happy Writing!</h2>
+    <div class="footer-holder clearfix">
+      
+      <div class="footer-right">
+        <div class="copyrights">&copy; 2024 iBook</div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+
+    <div class="login-visual">
+      <div class="login-form-holder">
+        <h1>Login</h1>
+
+        <div class="form-row n-row">
+          <label for="username">Username <span class="redAstriek">*</span></label>
+          <input id="username" type="text" formControlName="username" class="input-field form-control"
+             [ngClass]="{ 'is-invalid': loginFormSubmitted && loginForm.controls.username.invalid}" >
+          <div *ngIf="loginFormSubmitted && loginForm.controls.username?.errors"
+          class="invalid-feedback">
+            <div *ngIf="loginForm.controls.username.errors?.['required']">Username is required</div>
+          </div>
+        </div>
+        <div class="form-row n-row">
+          <label for="password">PASSWORD <span class="redAstriek">*</span></label>
+          <input id="password" type="password" formControlName="password" placeholder="***********"
+            class="input-field form-control" [ngClass]="{ 'is-invalid': loginFormSubmitted && loginForm.controls.password.invalid}">
+          <div *ngIf=" loginFormSubmitted && loginForm.controls.password?.errors" class="invalid-feedback">
+            <div *ngIf="loginForm.controls.password.errors?.['required']">Password is required</div>
+            <div *ngIf="loginForm.controls.password.errors?.['minlength']">Password must be at least 8 characters</div>
+          </div>
+        </div>
+     
+        <div class="form-row n-row">
+          <input type="submit" class="submit-btn" value="Sign In">
+        </div>
+
+        <div class="form-row n-row">
+          <a [routerLink]="['/signup']" title="Sign Up"
+          class="submit-btn signup-btn "> Sign UP</a>
+        </div>
+       
+      </div>
+    </div>
+  </form>
+
+ 
+
+ 
+</div>

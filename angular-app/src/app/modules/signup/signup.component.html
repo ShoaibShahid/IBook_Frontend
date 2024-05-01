@@ -1,0 +1,143 @@
+<div class="login-wrapper clearfix">
+    <div class="login-sidebar">
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="logo">
+      </div>
+  
+  
+      <h1><i style="color:#fff">iBook: Next-Gen AI Writing APP</i></h1>
+      <h2>Happy Writing!</h2>
+      <div class="footer-holder clearfix">
+        
+        <div class="footer-right">
+          <div class="copyrights">&copy; 2024 iBook</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row login-visual">
+        <div class="col-md-6 mx-auto">
+            <h3 class="display-5">Sign UP</h3>
+              <form
+                [formGroup]="registerForm"
+                (ngSubmit)="onSubmit()"
+                autocomplete="off"
+              >
+                <div class="mb-3">
+                  <label for="Name" class="form-label">First Name</label>
+                  <input type="text" class="form-control" formControlName="first_name" />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        (registerFormControl['first_name'].touched || submitted) &&
+                        registerFormControl['first_name'].errors?.['required']"
+                  >
+                    Name is required
+                  </span>
+                </div>
+                <div class="mb-3">
+                  <label for="Name" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" formControlName="last_name" />
+                </div>
+                <div class="mb-3">
+                  <label for="Email" class="form-label">Email</label>
+                  <input type="text" class="form-control" formControlName="email" />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        (registerFormControl['email'].touched || submitted) &&
+                        registerFormControl['email'].errors?.['required']"
+                  >
+                    Email is required
+                  </span>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        registerFormControl['email'].touched &&
+                        registerFormControl['email'].errors?.['email']"
+                  >
+                    Enter a valid email address
+                  </span>
+                </div>
+                <div class="mb-3">
+                  <label for="User Name" class="form-label">User Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="username"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        (registerFormControl['username'].touched || submitted) &&
+                        registerFormControl['username'].errors?.['required']"
+                  >
+                    User Name is required
+                  </span>
+                </div>
+                <div class="mb-3">
+                  <label for="Password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        (registerFormControl['password'].touched || submitted) &&
+                        registerFormControl['password'].errors?.['required']"
+                  >
+                    Password is required
+                  </span>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        registerFormControl['password'].touched &&
+                        registerFormControl['password'].errors?.['invalidPassword']"
+                  >
+                    Password should have minimum 8 characters, at least 1 uppercase
+                    letter, 1 lowercase letter and 1 number
+                  </span>
+                </div>
+                <div class="mb-3">
+                  <label for="Confirm Password" class="form-label"
+                    >Confirm Password</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password2"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        (registerFormControl['password2'].touched || submitted) &&
+                        registerFormControl['password2'].errors?.['required']"
+                  >
+                    Confirm Password is required
+                  </span>
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                        registerFormControl['password2'].touched &&
+                        registerFormControl['password2'].errors?.['passwordMismatch']"
+                  >
+                    Passwords doesnot match
+                  </span>
+                </div>
+                <div style="text-align: end;">
+                  <button type="submit" class="btn btn-success">Register</button>
+                  <button
+                    type="reset"
+                    class="btn btn-danger ms-2"
+                    (click)="resetForm()"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </form>
+        </div>
+      </div>
+  
+  </div>
