@@ -11,7 +11,7 @@ import { JsonService } from "./json.service";
 @Injectable({
   providedIn: "root",
 })
-export class UserService {
+export class ProjectService {
  
   constructor(
     private http: HttpClient,
@@ -20,12 +20,13 @@ export class UserService {
   ) {
   }
 
+
   errorHandler(error: HttpErrorResponse) {
     return observableThrowError(error.error || "Server Error");
   }
 
-  onCreateUser(param: any): Observable<any> {
-    const endPoint = this.coreHelper.createUrl('user/create');
+  onCreateProject(param: any): Observable<any> {
+    const endPoint = this.coreHelper.createUrl('project/create');
     return this.http
       .post<any>(endPoint, param)
       .pipe(
@@ -33,8 +34,8 @@ export class UserService {
         catchError(this.errorHandler)
       );
   }
-  onLoginUser(param: any): Observable<any> {
-    const endPoint = this.coreHelper.createUrl('user/login');
+  onGetUserProject(param: any): Observable<any> {
+    const endPoint = this.coreHelper.createUrl('project/list');
     return this.http
       .post<any>(endPoint, param)
       .pipe(
@@ -42,5 +43,19 @@ export class UserService {
         catchError(this.errorHandler)
       );
   }
+
+  onGetWordDetail(param: any): Observable<any> {
+    const endPoint = `https://wordsapiv1.p.rapidapi.com/words/${param}`;
+    return this.http
+      .get<any>(endPoint ,{headers: {
+        'X-RapidAPI-Key': 'b0ec0f7150mshe096daa6c59b130p1fc5cbjsn08d0a775b101',
+        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+      }})
+      .pipe(
+        tap((data) => this.jsonService.doStringify(data)),
+        catchError(this.errorHandler)
+      );
+  }
+ 
   
 }

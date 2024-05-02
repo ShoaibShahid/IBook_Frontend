@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  private baseUrl: string = `${environment.API_BASE_URL}api/User/`;
+  private baseUrl: string = `${environment.API_BASE_URL}user/`;
   private userPayload:any;
   constructor(private http: HttpClient, private router: Router) {
     this.userPayload = this.decodedToken();

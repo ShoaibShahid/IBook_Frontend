@@ -27,8 +27,12 @@ export class LocalStorageService {
 
   setUserData(data: any) {
     localStorage.setItem(StorageKeys.user_email, data.email);
-    localStorage.setItem(StorageKeys.user_id, data.id);
+    localStorage.setItem(StorageKeys.user_id, data.user_id);
     localStorage.setItem(StorageKeys.username, data.username);
+  }
+
+  getUserID() {
+    return this.getItem(StorageKeys.user_id);
   }
 
   clearAll() {

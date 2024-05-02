@@ -10,25 +10,23 @@
         </nav>
     </div>
     <div class="row">
-        <div class="col-2 bg-theme sidebar-inner">
+        <div class="col-2 bg-theme sidebar-inner" >
             <div class="sidebar-content">
                 <ul class="lists">
                     <li class="list">
-                        <a routerLink="['/project/list']" class="nav-link">
+                        <a routerLink="['/project/list']" class="nav-link" routerLinkActiveOptions="{exact:
+                            true}">
                             <i class="bx bx-home-alt icon"></i>
                             <span class="link">Project</span>
                         </a>
                     </li>
-                </ul>
-
-                <div class="bottom-cotent">
                     <li class="list">
                         <a href="#" class="nav-link" (click)="logout()">
                             <i class="bx bx-log-out icon"></i>
                             <span class="link">Logout</span>
                         </a>
                     </li>
-                </div>
+                </ul>
             </div>
         </div>
         <div class="col-9">

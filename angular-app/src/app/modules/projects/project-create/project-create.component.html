@@ -1,8 +1,81 @@
 <app-layout>
     <div class="row p-4">
-        <div class="col-12">
-            <a [routerLink]="['/project/create']" 
-            class="btn"> Create Project</a>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+            <div>
+                <div class="login-form-holder">
+
+                    <div class="form-row n-row">
+                        <label for="name">Project Name <span class="redAstriek">*</span></label>
+                        <input id="name" type="text" formControlName="name" class="input-field form-control"
+                            [ngClass]="{ 'is-invalid': projectForm && projectForm.controls.name.invalid}">
+                        <div *ngIf="formSubmitted && projectForm.controls.name?.errors" class="invalid-feedback">
+                            <div *ngIf="projectForm.controls.name.errors?.['required']">Project Name is required</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="document">Document <span class="redAstriek">*</span></label>
+                        </div>
+                        <div class="col-12">
+                            <editor (onDblclick)="openOverlay($event)"
+                                apiKey="j6a1n3jnlol8jdfmc5jprbprtwuseklzq63c9klw4eyp1w5s"
+                                [init]="coreHelper.tinymceConfig()" id="document" type="text" name="document"
+                                formControlName="document"></editor>
+                            <div *ngIf=" formSubmitted && projectForm.controls.document?.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="projectForm.controls.document.errors?.['required']">Document is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row n-row justify-content-end mt-5">
+                        <input type="submit" class="submit-btn" value="Save" style="max-width:200px;">
+                        <a [routerLink]="['/project/list']" class="btn ml-2"> Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- overlay -->
+        <div>
+            <div class="overlaySidePanel container-fluid" [ngClass]="{'': isOpen, 'overlayOpen' : !isOpen }">
+
+                <div>
+
+                    <div class="overlayHead">
+
+                        <button class="overlayCloseBtn" (click)="closeOverlay()">
+                                Close</button>
+                        <div class="overlayTitle">
+                            <h3>Word Lookup</h3>
+                        </div>
+
+                        <div>
+                            <div class="row">
+                                <h1>{{lookUpWordObj?.word}}</h1>
+                                <!-- <h5>{{lookUpWordObj?.results[0]?.partOfSpeech}}</h5> -->
+                                <ol>
+                                <li *ngFor="let item of lookUpWordObj?.results">
+                                    <ul>
+                                    <li *ngFor="let key of getObjectKeys(item)">
+                                        {{ key }}: {{ item[key] }}
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ol>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+
     </div>
 </app-layout>
