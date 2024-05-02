@@ -14,7 +14,7 @@ import { UiBlockerService } from 'src/app/services/ui-blocker.service';
 })
 export class ProjectListComponent implements OnInit {
 
-  displayedColumns: string[] = ['name','published_date', 'document'];
+  displayedColumns: string[] = ['name','published_date', 'document','action'];
   dataSource: MatTableDataSource<any> | any;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator | any;

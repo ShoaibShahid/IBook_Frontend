@@ -1,0 +1,48 @@
+
+<app-layout>
+    <div class="row p-4">
+        <h1>Draft successfully send to below details</h1>
+        <div class="detailsTable table-responsive">
+
+            <table class="table table-bordered">
+                <tr>
+                    <th scope="row">Send To</th>
+                    <td colspan="12">
+                        <p class="test_c_value">{{ senderDetail?.name }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td colspan="12">
+                        <p class="test_c_value">{{ senderDetail?.email }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Country</th>
+                    <td colspan="12">
+                        <p class="test_c_value">{{ senderDetail?.country }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">City</th>
+                    <td colspan="12">
+                        <p class="test_c_value">{{ senderDetail?.city }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Postal Code</th>
+                    <td colspan="12">
+                        <p class="test_c_value">{{ senderDetail?.postal_code }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Address</th>
+                    <td colspan="12">
+                        <p class="test_c_value">{{ senderDetail?.address }}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <a style="max-width: 150px;" [routerLink]="['/project/list']" class="btn btn-large btn-primary"> Done</a>
+    </div>
+</app-layout>
