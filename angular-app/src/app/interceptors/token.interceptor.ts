@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { ToastrNotificationService } from '../services/toastr.notification.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -18,12 +19,13 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private auth: AuthService, 
     private toastrNotificationService: ToastrNotificationService,
+    private localStorageService: LocalStorageService,
     private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const myToken = this.auth.getToken();
 
-    if(myToken){
+    if(myToken && !request.url.includes('user/create')){
       request = request.clone({
         setHeaders: {Authorization:`Bearer ${myToken}`}  // "Bearer "+myToken
       })
@@ -41,9 +43,9 @@ export class TokenInterceptor implements HttpInterceptor {
     );
   }
   handleUnAuthorizedError(req: HttpRequest<any>, next: HttpHandler){
-    let tokeApiModel = new TokenApiModel();
-    tokeApiModel.accessToken = this.auth.getToken()!;
-    tokeApiModel.refreshToken = this.auth.getRefreshToken()!;
+    let tokeApiModel:any= {};
+    tokeApiModel.access = this.auth.getToken()!;
+    tokeApiModel.refresh = this.auth.getRefreshToken()!;
     return this.auth.renewToken(tokeApiModel)
     .pipe(
       switchMap((data:TokenApiModel)=>{
@@ -57,6 +59,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err)=>{
         return throwError(()=>{
           this.toastrNotificationService.showError("Token is expired, Please Login again");
+          this.localStorageService.clearAll();
           this.router.navigate(['login'])
         })
       })
